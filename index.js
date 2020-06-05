@@ -104,3 +104,11 @@ function init() {
 }
 
 //animation loop for the particles
+function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    for (let i = 0; i < particleArray.lenght; i++) {
+        particleArray[i].update();
+    }
+}
