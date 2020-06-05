@@ -102,3 +102,5 @@ function init() {
         particleArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
 }
+
+//animation loop for the particles
