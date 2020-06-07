@@ -11,7 +11,7 @@ let particleArray;
 let mouse = {
     x = null,
     y = null,
-    radius: (canvas.height / 80) * (canvas.width / 80);
+    radius: (canvas.height / 80) * (canvas.width / 80)
 }
 
 //Eventlistener
@@ -28,7 +28,7 @@ window.addEventListener('mousemove',
 class Particle {
     constructor(x, y, directionX, directionY, size, color) {
         this.x = x;
-        this y = y;
+        this.y = y;
         this.directionX = directionX;
         this.directionY = directionY;
         this.size = size;
@@ -112,3 +112,13 @@ function animate() {
         particleArray[i].update();
     }
 }
+
+// checking if the particles are clouse enoiug to draw a line between them
+function connect() {
+    for (let a = 0; a < particleArray.lenght; a++) {
+        let distance = ((particleArray[a].x - particleArray[b].x) * (particleArray[a]))
+    }
+}
+
+init();
+animate();
