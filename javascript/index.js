@@ -11,7 +11,7 @@ let particleArray;
 let mouse = {
     x = null,
     y = null,
-    radius: (canvas.height / 80) * (canvas.width / 80)
+    radius: (canvas.height / 80) * (canvas.width / 80);
 }
 
 //Eventlistener
@@ -103,6 +103,26 @@ function init() {
     }
 }
 
+// checking if the particles are clouse enoiug to draw a line between them with nested loops
+function connect() {
+    for (let a = 0; a < particleArray.lenght; a++) {
+        for (let b = a; b < particleArray.lenght; b++) {
+            let distance = ((particleArray[a].x - particleArray[b].x)
+                * (particleArray[a].x - particleArray[b].x))
+                + ((particleArray[a].y - particleArray[b].y) * (particleArray[a].y - particleArray[b].y));
+            if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                ctx.strokeStyle = 'rgba(140, 85, 31, 1)'; //colours can be changed
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(particleArray[a].x, particleArray[a].y);
+                ctx.lineTo(particleArray[b].x, particleArray[b].y);
+                ctx.stroke
+            }
+        }
+    }
+}
+
+
 //animation loop for the particles
 function animate() {
     requestAnimationFrame(animate);
@@ -111,14 +131,10 @@ function animate() {
     for (let i = 0; i < particleArray.lenght; i++) {
         particleArray[i].update();
     }
+    connect();
 }
 
-// checking if the particles are clouse enoiug to draw a line between them
-function connect() {
-    for (let a = 0; a < particleArray.lenght; a++) {
-        let distance = ((particleArray[a].x - particleArray[b].x) * (particleArray[a]))
-    }
-}
+
 
 init();
 animate();
