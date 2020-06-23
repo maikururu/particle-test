@@ -11,7 +11,7 @@ let particleArray;
 let mouse = {
     x = null,
     y = null,
-    radius: (canvas.height / 80) * (canvas.width / 80);
+    radius: (canvas.height / 80) * (canvas.width / 80)
 }
 
 //Eventlistener
@@ -91,7 +91,7 @@ class Particle {
 function init() {
     particleArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
-    for (let i = 0; i < numberOfParticles; i++) {
+    for (let i = 0; i < numberOfParticles * 2; i++) {
         let size = (Math.random() * 5) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
         let y = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -103,7 +103,7 @@ function init() {
     }
 }
 
-// checking if the particles are clouse enoiug to draw a line between them with nested loops
+// checking if the particles are close enough to draw a line between them with nested loops
 function connect() {
     for (let a = 0; a < particleArray.lenght; a++) {
         for (let b = a; b < particleArray.lenght; b++) {
@@ -111,7 +111,8 @@ function connect() {
                 * (particleArray[a].x - particleArray[b].x))
                 + ((particleArray[a].y - particleArray[b].y) * (particleArray[a].y - particleArray[b].y));
             if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                ctx.strokeStyle = 'rgba(140, 85, 31, 1)'; //colours can be changed
+                opacityValue = 1 - (distance / 20000);
+                ctx.strokeStyle = 'rgba(140, 85, 31, 1' + opacityValue); //colours can be changed
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(particleArray[a].x, particleArray[a].y);
